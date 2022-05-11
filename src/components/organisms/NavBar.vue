@@ -10,8 +10,9 @@
         <a class="nav-link" :href="item.path">{{ item.title }}</a>
       </li>
     </ul>
-    <Button variant="primary" button-text="Sign In" />
-    <ProfilePicture
+    <Button @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"
+      v-if="!isUserSigned" />
+    <ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else
       src="https://www.pngitem.com/pimgs/m/487-4876417_link-head-png-toon-link-face-png-transparent.png" />
   </nav>
 </template>
@@ -23,19 +24,30 @@ import ProfilePicture from "../atoms/ProfilePicture.vue";
 
 export default defineComponent({
   name: "NavBar",
-  data: () => ({
-    options: [
-      {
-        path: "/",
-        title: "Page1",
-      },
-      {
-        path: "/banana",
-        title: "Page2",
-      },
-    ],
-    enterprise: "Vue sample",
-  }),
+  data() {
+    return {
+      options: [
+        {
+          path: "/",
+          title: "Page1",
+        },
+        {
+          path: "/",
+          title: "Page2",
+        },
+      ],
+      enterprise: "Vue sample",
+      isUserSigned: false
+    };
+  },
+  methods: {
+    login() {
+      this.isUserSigned = true;
+    },
+    logout() {
+      this.isUserSigned = false;
+    }
+  },
   components: {
     "Button": ButtonVue,
     ProfilePicture

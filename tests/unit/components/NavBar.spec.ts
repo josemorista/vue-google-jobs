@@ -12,4 +12,22 @@ describe("NavBar", () => {
 		const elements = sut.findAll("[data-test='nav-list-item']");
 		expect(elements.every(element => element.text().includes("Page"))).toBeTruthy();
 	});
+
+	describe("when the user is logged out", () => {
+		it("Should prompts user to sign in", () => {
+			const sut = mount(NavBar);
+			const loginButton = sut.find("[data-test='navbar-signIn-button']");
+			expect(loginButton.exists()).toBeTruthy();
+		});
+	})
+
+	describe("when the user is logged", () => {
+		it("Should show the user profile picture", async () => {
+			const sut = mount(NavBar);
+			const loginButton = sut.find("[data-test='navbar-signIn-button']");
+			await loginButton.trigger("click");
+			const profilePicture = sut.find("[data-test='navbar-profilePicture']");
+			expect(profilePicture.exists()).toBeTruthy();
+		});
+	})
 });
