@@ -1,26 +1,31 @@
 <template>
-  <nav class="navbar">
-    <div class="logo">
-      <h1 data-test="enterprise-name">
-        {{ enterprise }}
-      </h1>
-    </div>
-    <ul class="nav-list">
-      <li v-for="item of options" :key="item.title" class="nav-list-item" data-test="nav-list-item">
-        <a class="nav-link" :href="item.path">{{ item.title }}</a>
-      </li>
-    </ul>
-    <Button @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"
-      v-if="!isUserSigned" />
-    <ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else
-      src="https://www.pngitem.com/pimgs/m/487-4876417_link-head-png-toon-link-face-png-transparent.png" />
-  </nav>
+  <header>
+    <nav class="main-navbar">
+      <div class="logo">
+        <h1 data-test="enterprise-name">
+          {{ enterprise }}
+        </h1>
+      </div>
+      <ul class="nav-list">
+        <li v-for="item of options" :key="item.title" class="nav-list-item" data-test="nav-list-item">
+          <a class="nav-link" :href="item.path">{{ item.title }}</a>
+        </li>
+      </ul>
+      <Button class="btn-sign" @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"
+        v-if="!isUserSigned" />
+      <ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else
+        src="https://www.pngitem.com/pimgs/m/487-4876417_link-head-png-toon-link-face-png-transparent.png" />
+    </nav>
+    <SubNav v-if="isUserSigned" />
+  </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import ButtonVue from "../atoms/Button.vue";
 import ProfilePicture from "../atoms/ProfilePicture.vue";
+import SubNav from "./SubNav.vue";
+
 
 export default defineComponent({
   name: "NavBar",
@@ -62,52 +67,64 @@ export default defineComponent({
   },
   components: {
     "Button": ButtonVue,
-    ProfilePicture
+    ProfilePicture,
+    SubNav
   }
 });
 </script>
 
 
 <style lang="scss" scoped>
-.navbar {
+header {
   position: fixed;
   top: 0;
   left: 0;
-  width: calc(100% - 2rem);
-  overflow-x: auto;
-  height: 4rem;
-  margin: 0 1rem;
+  width: 100%;
 
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  justify-content: space-between;
+  nav {
 
-  border-bottom: 1px solid lightgray;
+    &.main-navbar {
+      overflow-x: auto;
+      min-height: 4rem;
+      padding: 0 1rem;
 
-  div,
-  ul {
-    &.logo {
-      h1 {
-        color: darkgray;
-      }
-    }
-
-    &.nav-list {
       display: flex;
-      flex: 1;
+      align-items: center;
       gap: 2rem;
-    }
-  }
+      justify-content: space-between;
 
-  li {
-    &.nav-list-item {
-      cursor: pointer;
-      border-bottom: 1px solid transparent;
+      border-bottom: 1px solid lightgray;
 
 
-      &:hover {
-        border-bottom: 1px solid black;
+      div,
+      ul {
+        &.logo {
+          h1 {
+            color: darkgray;
+          }
+        }
+
+        &.nav-list {
+          display: flex;
+          flex: 1;
+          gap: 2rem;
+        }
+      }
+
+      li {
+        &.nav-list-item {
+          cursor: pointer;
+          border-bottom: 1px solid transparent;
+
+
+          &:hover {
+            border-bottom: 1px solid black;
+          }
+        }
+      }
+
+      button {
+        min-width: 80px;
       }
     }
   }

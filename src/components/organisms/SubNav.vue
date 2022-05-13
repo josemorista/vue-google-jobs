@@ -1,9 +1,9 @@
 <template>
 	<nav>
 		<section class="search">
-			<img src="@/assets/zoom.png" alt="Search icon">
+			<icon type="search"></icon>
 		</section>
-		<section class="jobs-matched">
+		<section v-if="!hideJobsMatched" class="jobs-matched" data-test="jobs-matched">
 			<p>
 				8 jobs matched
 			</p>
@@ -15,6 +15,19 @@
 	</nav>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+	name: "SubNav",
+	data() {
+		return {
+			hideJobsMatched: false
+		};
+	}
+});
+</script>
+
 <style lang="scss" scoped>
 nav {
 
@@ -23,23 +36,19 @@ nav {
 	align-items: center;
 	overflow-x: auto;
 	gap: 1rem;
-	padding: 0 2rem;
+	padding: 0 1rem;
 	height: 5rem;
 	border-bottom: 1px solid darkgray;
 
 	section {
-		&.search {
-			img {
-				height: 1.8rem;
-			}
-		}
+		&.search {}
 
-		&.jobs-matched {
-			flex: 1;
-		}
+		&.jobs-matched {}
 
 		&.options {
 			display: flex;
+			flex: 1;
+			justify-content: flex-end;
 			gap: 1rem;
 
 			a {

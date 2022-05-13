@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import VueFeather from 'vue-feather';
 
-createApp(App).mount('#app');
+createApp(App).component("icon", VueFeather).mount('#app');
