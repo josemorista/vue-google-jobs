@@ -10,7 +10,7 @@ export default defineComponent({
 	props: {
 		src: String
 	}
-})
+});
 </script>
 
 <style lang="scss" scoped>

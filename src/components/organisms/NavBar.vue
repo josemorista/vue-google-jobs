@@ -29,11 +29,23 @@ export default defineComponent({
       options: [
         {
           path: "/",
-          title: "Page1",
+          title: "Teams",
         },
         {
           path: "/",
-          title: "Page2",
+          title: "Locations",
+        },
+        {
+          path: "/",
+          title: "Benefits",
+        },
+        {
+          path: "/",
+          title: "Jobs",
+        },
+        {
+          path: "/",
+          title: "Students"
         },
       ],
       enterprise: "Vue sample",
@@ -62,12 +74,13 @@ export default defineComponent({
   top: 0;
   left: 0;
   width: calc(100% - 2rem);
+  overflow-x: auto;
   height: 4rem;
   margin: 0 1rem;
 
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: space-between;
 
   border-bottom: 1px solid lightgray;
@@ -83,13 +96,19 @@ export default defineComponent({
     &.nav-list {
       display: flex;
       flex: 1;
-      gap: 1rem;
+      gap: 2rem;
     }
   }
 
   li {
     &.nav-list-item {
       cursor: pointer;
+      border-bottom: 1px solid transparent;
+
+
+      &:hover {
+        border-bottom: 1px solid black;
+      }
     }
   }
 }

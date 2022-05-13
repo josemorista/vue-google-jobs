@@ -1,15 +1,20 @@
 <template>
   <NavBar />
+  <main class="page-content">
+    <Home />
+  </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavBar from "@/components/organisms/NavBar.vue";
+import Home from "@/components/templates/Home.vue";
 
 export default defineComponent({
   name: "App",
   components: {
     NavBar,
+    Home
   },
 });
 </script>
@@ -38,6 +43,10 @@ html {
     box-shadow: none;
     text-decoration: none;
     color: inherit;
+  }
+
+  .page-content {
+    margin-top: 64px;
   }
 }
 </style>

@@ -9,8 +9,14 @@ describe("NavBar", () => {
 
 	it("Should display the nav items", () => {
 		const sut = mount(NavBar);
-		const elements = sut.findAll("[data-test='nav-list-item']");
-		expect(elements.every(element => element.text().includes("Page"))).toBeTruthy();
+		const elements = sut.findAll("[data-test='nav-list-item']").map(el => el.text());
+		expect(elements).toMatchObject([
+			"Teams",
+			"Locations",
+			"Benefits",
+			"Jobs",
+			"Students"
+		]);
 	});
 
 	describe("when the user is logged out", () => {
@@ -19,7 +25,7 @@ describe("NavBar", () => {
 			const loginButton = sut.find("[data-test='navbar-signIn-button']");
 			expect(loginButton.exists()).toBeTruthy();
 		});
-	})
+	});
 
 	describe("when the user is logged", () => {
 		it("Should show the user profile picture", async () => {
@@ -29,5 +35,5 @@ describe("NavBar", () => {
 			const profilePicture = sut.find("[data-test='navbar-profilePicture']");
 			expect(profilePicture.exists()).toBeTruthy();
 		});
-	})
+	});
 });
