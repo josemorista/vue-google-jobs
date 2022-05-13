@@ -1,5 +1,5 @@
 <template>
-	<button :class="variant">
+	<button :class="{ [computedVariant]: true }">
 		<span>
 			{{ buttonText }}
 		</span>
@@ -13,9 +13,21 @@ export default defineComponent({
 	name: "ButtonComponent",
 	props: {
 		buttonText: String,
-		variant: String
+		variant: {
+			type: String,
+			required: true,
+			default: "primary",
+			/*validator(value: string) {
+				return ["primary", "secondary"].includes(value);
+			}*/
+		}
+	},
+	computed: {
+		computedVariant() {
+			return this.variant || "primary";
+		}
 	}
-})
+});
 </script>
 
 <style scoped lang="scss">
@@ -24,16 +36,22 @@ button {
 	outline: none;
 	box-shadow: none;
 	border: 1px solid transparent;
+	border-radius: 4px;
 	font-weight: bold;
+
+	&:hover {
+		filter: brightness(0.8);
+	}
 
 	&.primary {
 		background-color: blue;
-		border-radius: 4px;
 		color: white;
+	}
 
-		&:hover {
-			filter: brightness(0.9);
-		}
+	&.secondary {
+		background-color: transparent;
+		border-color: blue;
+		color: blue;
 	}
 }
 </style>
