@@ -1,11 +1,11 @@
 <template>
 	<nav>
-		<section class="search">
+		<section v-if="!hideJobsMatched" class="search">
 			<icon type="search"></icon>
 		</section>
 		<section v-if="!hideJobsMatched" class="jobs-matched" data-test="jobs-matched">
 			<p>
-				8 jobs matched
+				<span>8</span> jobs matched
 			</p>
 		</section>
 		<section class="options">
@@ -30,20 +30,29 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 nav {
-
+	position: fixed;
+	top: 4rem;
+	left: 0;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	overflow-x: auto;
 	gap: 1rem;
-	padding: 0 1rem;
-	height: 5rem;
-	border-bottom: 1px solid darkgray;
+	padding: 0 2rem;
+	height: 4rem;
+	border-bottom: 1px solid lightgray;
 
 	section {
 		&.search {}
 
-		&.jobs-matched {}
+		&.jobs-matched {
+			p {
+				span {
+					color: green;
+				}
+			}
+		}
 
 		&.options {
 			display: flex;

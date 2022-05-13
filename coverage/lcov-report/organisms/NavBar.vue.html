@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -194,8 +194,17 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,6 +277,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -326,7 +346,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;header&gt;
+  &lt;header :class="computedHeaderClass"&gt;
     &lt;nav class="main-navbar"&gt;
       &lt;div class="logo"&gt;
         &lt;h1 data-test="enterprise-name"&gt;
@@ -340,8 +360,7 @@
       &lt;/ul&gt;
       &lt;Button class="btn-sign" @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"
         v-if="!isUserSigned" /&gt;
-      &lt;ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else
-        src="https://www.pngitem.com/pimgs/m/487-4876417_link-head-png-toon-link-face-png-transparent.png" /&gt;
+      &lt;ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else /&gt;
     &lt;/nav&gt;
     &lt;SubNav v-if="isUserSigned" /&gt;
   &lt;/header&gt;
@@ -396,6 +415,11 @@ export default defineComponent({
     "Button": ButtonVue,
     ProfilePicture,
     SubNav
+  },
+  computed: {
+    computedHeaderClass(): string {
+      return this.isUserSigned ? "extended" : "";
+    }
   }
 });
 &lt;/script&gt;
@@ -403,16 +427,22 @@ export default defineComponent({
 &nbsp;
 &lt;style lang="scss" scoped&gt;
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
+  height: 4rem;
+&nbsp;
+  &amp;.extended {
+    height: 8rem;
+  }
 &nbsp;
   nav {
 &nbsp;
     &amp;.main-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       overflow-x: auto;
-      min-height: 4rem;
+      height: 4rem;
       padding: 0 1rem;
 &nbsp;
       display: flex;
@@ -463,7 +493,7 @@ header {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri May 13 2022 15:59:25 GMT-0300 (Brasilia Standard Time)
+                at Fri May 13 2022 17:05:01 GMT-0300 (Brasilia Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

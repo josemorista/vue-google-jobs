@@ -15,8 +15,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 img {
-	height: 3rem;
-	width: 3rem;
+	height: 2rem;
+	width: 2rem;
 	object-fit: cover;
 	border-radius: 50%;
 	border: 1px solid darkgray;

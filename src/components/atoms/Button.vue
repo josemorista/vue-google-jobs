@@ -17,13 +17,13 @@ export default defineComponent({
 			type: String,
 			//required: true,
 			default: "primary",
-			/*validator(value: string) {
+			validator(value: string) {
 				return ["primary", "secondary"].includes(value);
-			}*/
+			}
 		}
 	},
 	computed: {
-		computedVariant() {
+		computedVariant(): string {
 			return this.variant || "primary";
 		}
 	}
@@ -32,7 +32,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 button {
-	padding: 0.8rem 1rem;
+	padding: 0.5rem 1rem;
 	outline: none;
 	box-shadow: none;
 	border: 1px solid transparent;

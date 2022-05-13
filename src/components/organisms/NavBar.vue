@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header :class="computedHeaderClass">
     <nav class="main-navbar">
       <div class="logo">
         <h1 data-test="enterprise-name">
@@ -13,8 +13,7 @@
       </ul>
       <Button class="btn-sign" @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"
         v-if="!isUserSigned" />
-      <ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else
-        src="https://www.pngitem.com/pimgs/m/487-4876417_link-head-png-toon-link-face-png-transparent.png" />
+      <ProfilePicture @click="logout" data-test="navbar-profilePicture" v-else />
     </nav>
     <SubNav v-if="isUserSigned" />
   </header>
@@ -69,6 +68,11 @@ export default defineComponent({
     "Button": ButtonVue,
     ProfilePicture,
     SubNav
+  },
+  computed: {
+    computedHeaderClass(): string {
+      return this.isUserSigned ? "extended" : "";
+    }
   }
 });
 </script>
@@ -76,21 +80,27 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
+  height: 4rem;
+
+  &.extended {
+    height: 8rem;
+  }
 
   nav {
 
     &.main-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       overflow-x: auto;
-      min-height: 4rem;
-      padding: 0 1rem;
+      height: 4rem;
+      padding: 0 2rem;
 
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 3rem;
       justify-content: space-between;
 
       border-bottom: 1px solid lightgray;
@@ -114,6 +124,7 @@ header {
       li {
         &.nav-list-item {
           cursor: pointer;
+          font-size: 0.8rem;
           border-bottom: 1px solid transparent;
 
 

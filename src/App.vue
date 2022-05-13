@@ -1,8 +1,6 @@
 <template>
   <NavBar />
-  <main class="page-content">
-    <Home />
-  </main>
+  <Home />
 </template>
 
 <script lang="ts">
@@ -43,10 +41,6 @@ html {
     box-shadow: none;
     text-decoration: none;
     color: inherit;
-  }
-
-  .page-content {
-    margin-top: 64px;
   }
 }
 </style>
