@@ -2,7 +2,8 @@
 	<main>
 		<div class="hero">
 			<div class="content">
-				<h1 class="heroTitle">Create</h1>
+				<h1 :class="['heroTitle', heroContent.color]" :style="`color:${heroContent.color};`">{{ heroContent.title }}
+				</h1>
 				<h1 class="heroSubtitle">for everyone</h1>
 				<h2>Find your next job in Vue Sample</h2>
 			</div>
@@ -14,13 +15,33 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { ArrayUtils } from "@/domain/shared/utils/Array";
 export default defineComponent({
 	name: "HeroComponent",
+	data(): { interval: number, heroContent: { title: string, color: string } } {
+		return {
+			interval: 0,
+			heroContent: {
+				title: "Create",
+				color: "tomato"
+			}
+		};
+	},
+	methods: {
+		changeTitle() {
+			const options = [["Build", "blue"], ["Create", "tomato"], ["Code", "green"]];
+			const nextTitle = ArrayUtils.getNextElement(options, el => el[0] === this.heroContent.title);
+			this.heroContent = {
+				title: nextTitle[0],
+				color: nextTitle[1]
+			};
+		}
+	},
 	beforeCreate() {
 		console.log("Before creating");
 	},
 	created() {
-		console.log("Created");
+		this.interval = setInterval(this.changeTitle, 5000);
 	},
 	beforeMount() {
 		console.log("Before mount");
@@ -35,7 +56,7 @@ export default defineComponent({
 		console.log("Updated");
 	},
 	beforeUnmount() {
-		console.log("Will unmount");
+		clearInterval(this.interval);
 	},
 	unmounted() {
 		console.log("Unmounted");
@@ -56,13 +77,12 @@ main {
 		display: flex;
 		height: 40vh;
 
-		align-items: center;
 		justify-content: center;
 
 		div {
 			&.content {
 				flex: 1;
-				padding: 0 1rem;
+				padding: 0 0.8rem;
 
 				h1 {
 					font-size: 88px;
