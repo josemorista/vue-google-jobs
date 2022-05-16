@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1652711581487" clover="3.2.0">
-  <project timestamp="1652711581487" name="All files">
-    <metrics statements="37" coveredstatements="34" conditionals="4" coveredconditionals="3" methods="19" coveredmethods="16" elements="60" coveredelements="53" complexity="0" loc="37" ncloc="37" packages="3" files="6" classes="6"/>
+<coverage generated="1652712829631" clover="3.2.0">
+  <project timestamp="1652712829631" name="All files">
+    <metrics statements="37" coveredstatements="36" conditionals="4" coveredconditionals="3" methods="19" coveredmethods="18" elements="60" coveredelements="57" complexity="0" loc="37" ncloc="37" packages="3" files="6" classes="6"/>
     <package name="components.atoms">
       <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="Button.vue" path="/home/josemorista/Documents/Dev/vue/job-search/src/components/atoms/Button.vue">
@@ -18,25 +18,25 @@
       </file>
     </package>
     <package name="components.organisms">
-      <metrics statements="28" coveredstatements="25" conditionals="2" coveredconditionals="2" methods="16" coveredmethods="13"/>
+      <metrics statements="28" coveredstatements="27" conditionals="2" coveredconditionals="2" methods="16" coveredmethods="15"/>
       <file name="Hero.vue" path="/home/josemorista/Documents/Dev/vue/job-search/src/components/organisms/Hero.vue">
-        <metrics statements="16" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="9"/>
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
       </file>
       <file name="NavBar.vue" path="/home/josemorista/Documents/Dev/vue/job-search/src/components/organisms/NavBar.vue">
         <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>

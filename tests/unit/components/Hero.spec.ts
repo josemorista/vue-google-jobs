@@ -3,9 +3,17 @@ import { nextTick } from "vue";
 import Hero from "@/components/organisms/Hero.vue";
 
 describe("Hero unit tests", () => {
-	it("Should change headline over time", async () => {
+	beforeEach(() => {
 		jest.useFakeTimers("modern");
 		jest.spyOn(globalThis, "setInterval");
+		jest.spyOn(globalThis, "clearInterval");
+	});
+
+	afterEach(() => {
+		jest.useRealTimers();
+	});
+
+	it("Should change headline over time", async () => {
 
 		const sut = mount(Hero);
 		jest.runOnlyPendingTimers();
@@ -15,7 +23,11 @@ describe("Hero unit tests", () => {
 		await nextTick();
 
 		expect(heroTitle.text()).toBe("Create");
+	});
 
-		jest.useRealTimers();
+	it("Should clear interval on unmount", async () => {
+		const sut = mount(Hero);
+		sut.unmount();
+		expect(clearInterval).toHaveBeenCalled();
 	});
 });
