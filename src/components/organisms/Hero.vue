@@ -2,7 +2,9 @@
 	<main>
 		<div class="hero">
 			<div class="content">
-				<h1 :class="['heroTitle', heroContent.color]" :style="`color:${heroContent.color};`">{{ heroContent.title }}
+				<h1 :class="['heroTitle', heroContent.color]" :style="`color:${heroContent.color};`" data-test="hero-title">{{
+						heroContent.title
+				}}
 				</h1>
 				<h1 class="heroSubtitle">for everyone</h1>
 				<h2>Find your next job in Vue Sample</h2>
@@ -22,8 +24,8 @@ export default defineComponent({
 		return {
 			interval: 0,
 			heroContent: {
-				title: "Create",
-				color: "tomato"
+				title: "Build",
+				color: "blue"
 			}
 		};
 	},
