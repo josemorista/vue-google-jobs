@@ -8,6 +8,7 @@
 				</h1>
 				<h1 class="heroSubtitle">for everyone</h1>
 				<h2>Find your next job in Vue Sample</h2>
+				<SearchJobForm />
 			</div>
 			<aside class="heroImage">
 			</aside>
@@ -18,9 +19,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { ArrayUtils } from "@/domain/shared/utils/Array";
+import SearchJobForm from "../molecules/SearchJobForm.vue";
 export default defineComponent({
 	name: "HeroComponent",
-	data(): { interval: number, heroContent: { title: string, color: string } } {
+	data(): {
+		interval: number;
+		heroContent: {
+			title: string;
+			color: string;
+		};
+	} {
 		return {
 			interval: 0,
 			heroContent: {
@@ -62,7 +70,8 @@ export default defineComponent({
 	},
 	unmounted() {
 		console.log("Unmounted");
-	}
+	},
+	components: { SearchJobForm }
 });
 </script>
 
@@ -96,7 +105,7 @@ main {
 				}
 
 				h2 {
-					margin-top: 2rem;
+					margin: 2rem 0;
 					font-size: 28px;
 					font-weight: 400;
 				}
