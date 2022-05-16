@@ -3,7 +3,7 @@
 		<label :class="hasIcon" v-if="!!label" :for="id">{{ label }}</label>
 		<div class="inputContainer">
 			<icon v-if="!!icon" :type="icon"></icon>
-			<input @input="updateValue" :value="value" :type="type" :name="name" :id="id" :placeholder="placeholder">
+			<input v-model="value" :type="type" :name="name" :id="id" :placeholder="placeholder">
 		</div>
 	</div>
 </template>
@@ -24,11 +24,6 @@ export default defineComponent({
 		return {
 			value: ""
 		};
-	},
-	methods: {
-		updateValue($event: any) {
-			this.value = $event.target.value;
-		}
 	},
 	computed: {
 		hasIcon() {
