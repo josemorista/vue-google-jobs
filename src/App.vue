@@ -1,19 +1,11 @@
 <template>
-  <NavBar />
-  <Home />
+  <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import NavBar from "@/components/organisms/NavBar.vue";
-import Home from "@/components/templates/Home.vue";
-
 export default defineComponent({
-  name: "App",
-  components: {
-    NavBar,
-    Home
-  },
+  name: "App"
 });
 </script>
 

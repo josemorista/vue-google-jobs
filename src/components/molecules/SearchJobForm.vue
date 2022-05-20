@@ -1,7 +1,8 @@
 <template>
 	<form action="">
-		<TextField type="text" name="search" icon="search" label="Role" placeholder="Software Engineer" />
-		<TextField type="text" name="search" label="In" placeholder="Los Angeles" />
+		<TextField type="text" :value="role" @onChange="role = $event" icon="search" label="Role"
+			placeholder="Software Engineer" />
+		<TextField type="text" :value="location" @onChange="location = $event" label="In" placeholder="Los Angeles" />
 		<Button button-text="Search" type="submit" />
 	</form>
 </template>
@@ -16,7 +17,7 @@ export default defineComponent({
 	data() {
 		return {
 			role: "",
-			where: ""
+			location: ""
 		};
 	},
 	components: {
