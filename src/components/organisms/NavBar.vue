@@ -8,7 +8,7 @@
       </div>
       <ul class="nav-list">
         <li v-for="item of options" :key="item.title" class="nav-list-item" data-test="nav-list-item">
-          <a class="nav-link" :href="item.path">{{ item.title }}</a>
+          <route-link class="nav-link" :to="{ name: item.path }">{{ item.title }}</route-link>
         </li>
       </ul>
       <Button class="btn-sign" @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"

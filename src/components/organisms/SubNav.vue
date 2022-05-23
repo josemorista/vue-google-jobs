@@ -20,10 +20,10 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
 	name: "SubNav",
-	data() {
-		return {
-			hideJobsMatched: false
-		};
+	computed: {
+		hideJobsMatched() {
+			return this.$route.name === "job-results";
+		}
 	}
 });
 </script>
