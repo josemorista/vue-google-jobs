@@ -34,5 +34,8 @@ html {
     text-decoration: none;
     color: inherit;
   }
+
+  // Global classes
+
 }
 </style>

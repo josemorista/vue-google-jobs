@@ -1,14 +1,14 @@
 <template>
   <header :class="computedHeaderClass">
     <nav class="main-navbar">
-      <div class="logo">
+      <div class="logo" @click="goToHome">
         <h1 data-test="enterprise-name">
           {{ enterprise }}
         </h1>
       </div>
       <ul class="nav-list">
         <li v-for="item of options" :key="item.title" class="nav-list-item" data-test="nav-list-item">
-          <route-link class="nav-link" :to="{ name: item.path }">{{ item.title }}</route-link>
+          <router-link class="nav-link" :to="item.path">{{ item.title }}</router-link>
         </li>
       </ul>
       <Button class="btn-sign" @click="login" data-test="navbar-signIn-button" variant="primary" button-text="Sign In"
@@ -44,7 +44,7 @@ export default defineComponent({
           title: "Benefits",
         },
         {
-          path: "/",
+          path: "/job-results",
           title: "Jobs",
         },
         {
@@ -57,6 +57,11 @@ export default defineComponent({
     };
   },
   methods: {
+    goToHome() {
+      this.$router.push({
+        name: "Home"
+      });
+    },
     login() {
       this.isUserSigned = true;
     },
@@ -109,6 +114,8 @@ header {
       div,
       ul {
         &.logo {
+          cursor: pointer;
+
           h1 {
             color: darkgray;
           }

@@ -1,5 +1,5 @@
 <template>
-	<form action="">
+	<form @submit.prevent @submit="handleSubmit">
 		<TextField type="text" :value="role" @onChange="role = $event" icon="search" label="Role"
 			placeholder="Software Engineer" />
 		<TextField type="text" :value="location" @onChange="location = $event" label="In" placeholder="Los Angeles" />
@@ -19,6 +19,18 @@ export default defineComponent({
 			role: "",
 			location: ""
 		};
+	},
+	methods: {
+		handleSubmit() {
+			const params: Record<string, string> = {};
+			if (this.role) params.role = this.role;
+			if (this.location) params.location = this.location;
+
+			this.$router.push({
+				name: "JobResults",
+				query: params
+			});
+		}
 	},
 	components: {
 		TextField,

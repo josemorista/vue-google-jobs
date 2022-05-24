@@ -55,7 +55,7 @@ export default defineComponent({
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		height: 3.2rem;
+		height: 3rem;
 		padding: 0 1rem;
 
 		border: 1px solid darkgray;
