@@ -95,6 +95,7 @@ header {
   nav {
 
     &.main-navbar {
+      background-color: white;
       position: fixed;
       top: 0;
       left: 0;

@@ -42,6 +42,7 @@ nav {
 	padding: 0 2rem;
 	height: 4rem;
 	border-bottom: 1px solid lightgray;
+	background-color: white;
 
 	section {
 		&.search {}
