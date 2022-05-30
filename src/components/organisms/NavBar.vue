@@ -44,7 +44,7 @@ export default defineComponent({
           title: "Benefits",
         },
         {
-          path: "/job-results",
+          path: "/jobs/results",
           title: "Jobs",
         },
         {

@@ -58,7 +58,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 aside {
-	height: 100%;
 	width: 350px;
 
 	padding: 2rem 1rem;

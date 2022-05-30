@@ -1,7 +1,7 @@
 <template>
 	<ol>
 		<li class="job-result-item" v-for="job of jobs" :key="job.id">
-			<router-link to="/jobs/results/1">
+			<router-link :to="`/jobs/results/${job.id}`">
 				<header>
 					<h2 class="job-name">
 						{{ job.title }}

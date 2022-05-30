@@ -15,7 +15,6 @@ export default defineComponent({
 		buttonText: String,
 		variant: {
 			type: String,
-			//required: true,
 			default: "primary",
 			validator(value: string) {
 				return ["primary", "secondary"].includes(value);

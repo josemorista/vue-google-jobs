@@ -4,6 +4,7 @@
 		<JobFilter></JobFilter>
 		<JobList :jobs="jobs" />
 	</main>
+	<div id="jobListsIntersect" style="height:1px;"></div>
 </template>
 
 <script lang="ts">
@@ -25,15 +26,32 @@ export default defineComponent({
 		JobFilter,
 		JobList
 	},
-	data(): { jobs: Array<Job> } {
+	methods: {
+		async fetchJobs() {
+			const request = new HttpJsonRequest(`http://localhost:3000/jobs?_page=${this.page}&_limit=5`);
+			const response = await getService.get<Array<Job>>(request);
+			this.jobs = [...this.jobs, ...response.body];
+			this.page++;
+		}
+	},
+	data(): { jobs: Array<Job>, page: number, intersectionObserver: IntersectionObserver | null } {
 		return {
-			jobs: []
+			jobs: [],
+			page: 0,
+			intersectionObserver: null
 		};
 	},
-	async created() {
-		const request = new HttpJsonRequest("http://localhost:3000/jobs");
-		const response = await getService.get<Array<Job>>(request);
-		this.jobs = response.body;
+	mounted() {
+		this.intersectionObserver = new IntersectionObserver(async ([entry]) => {
+			if (entry && entry.isIntersecting) {
+				await this.fetchJobs();
+			}
+		});
+		const el = document.querySelector("#jobListsIntersect");
+		el && this.intersectionObserver.observe(el);
+	},
+	unmounted() {
+		this.intersectionObserver?.disconnect();
 	}
 });
 </script>
@@ -43,7 +61,5 @@ export default defineComponent({
 	display: flex;
 	gap: 1rem;
 	width: 100%;
-	height: calc(100vh - 8rem);
-	overflow-y: hidden;
 }
 </style>
