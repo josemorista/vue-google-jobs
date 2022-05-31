@@ -28,7 +28,7 @@ export default defineComponent({
 	},
 	methods: {
 		async fetchJobs() {
-			const request = new HttpJsonRequest(`http://localhost:3000/jobs?_page=${this.page}&_limit=5`);
+			const request = new HttpJsonRequest(`${process.env.VUE_APP_API_URL}/jobs?_page=${this.page}&_limit=5`);
 			const response = await getService.get<Array<Job>>(request);
 			this.jobs = [...this.jobs, ...response.body];
 			this.page++;
