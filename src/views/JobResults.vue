@@ -10,14 +10,10 @@
 <script lang="ts">
 import NavBarVue from "@/components/organisms/NavBar.vue";
 import { defineComponent } from "vue";
+import { mapActions, mapState } from "vuex";
 import JobFilter from "@/components/molecules/JobFilter.vue";
 import JobList from "@/components/organisms/JobList.vue";
-import { FetchHttpGetService } from "@/domain/shared/infra/fetch/adapters/FetchHttGetService";
-import { HttpJsonRequest } from "@/domain/shared/entities/HttpJsonRequest";
-import { Job } from "@/domain/modules/jobs/entities/Job";
-
-
-const getService = new FetchHttpGetService();
+import { Actions } from "@/store/actions";
 
 export default defineComponent({
 	name: "JobResultsView",
@@ -28,18 +24,19 @@ export default defineComponent({
 	},
 	methods: {
 		async fetchJobs() {
-			const request = new HttpJsonRequest(`${process.env.VUE_APP_API_URL}/jobs?_page=${this.page}&_limit=5`);
-			const response = await getService.get<Array<Job>>(request);
-			this.jobs = [...this.jobs, ...response.body];
+			this[Actions.FETCH_JOBS](this.page);
 			this.page++;
-		}
+		},
+		...mapActions([Actions.FETCH_JOBS])
 	},
-	data(): { jobs: Array<Job>, page: number, intersectionObserver: IntersectionObserver | null } {
+	data(): { page: number, intersectionObserver: IntersectionObserver | null } {
 		return {
-			jobs: [],
 			page: 0,
 			intersectionObserver: null
 		};
+	},
+	computed: {
+		...mapState(["jobs"])
 	},
 	mounted() {
 		this.intersectionObserver = new IntersectionObserver(async ([entry]) => {
