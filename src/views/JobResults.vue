@@ -2,7 +2,7 @@
 	<NavBar />
 	<main class="jobResultsView">
 		<JobFilter></JobFilter>
-		<JobList :jobs="jobs" />
+		<JobList :jobs="filteredJobs" />
 	</main>
 	<div id="jobListsIntersect" style="height:1px;"></div>
 </template>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import NavBarVue from "@/components/organisms/NavBar.vue";
 import { defineComponent } from "vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import JobFilter from "@/components/molecules/JobFilter.vue";
 import JobList from "@/components/organisms/JobList.vue";
 import { Actions } from "@/store/actions";
@@ -36,7 +36,7 @@ export default defineComponent({
 		};
 	},
 	computed: {
-		...mapState(["jobs"])
+		...mapGetters(["filteredJobs"])
 	},
 	mounted() {
 		this.intersectionObserver = new IntersectionObserver(async ([entry]) => {
